@@ -45,13 +45,13 @@
       <small v-else-if="v$.pass.$dirty && v$.pass.maxLength.$invalid"
         >Максимум 15 символов</small
       >
-      
+
       <my-button type="submit" class="center">Войти</my-button>
     </form>
   </div>
 
   <div class="wrapper" v-if="showModal">
-    <div class="modal">      
+    <div class="modal">
       <div class="rotation"></div>
       <h3>Авторизация...</h3>
     </div>
@@ -72,6 +72,7 @@ export default {
       showModal: false,
     };
   },
+
   validations() {
     return {
       email: { required, email },
@@ -82,6 +83,7 @@ export default {
       },
     };
   },
+
   methods: {
     submitHandler() {
       if (this.v$.$invalid) {
@@ -94,22 +96,11 @@ export default {
         }, 2000);
       }
     },
-    
   },
 };
 </script>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-
 form {
   background: inherit;
 }
@@ -179,11 +170,12 @@ small {
   border-radius: 38px;
   width: 50px;
   height: 50px;
+  background: transparent;
+  
   animation-name: rotation;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  background: transparent;
 }
 
 @keyframes rotation {

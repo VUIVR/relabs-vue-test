@@ -45,7 +45,7 @@ a {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 15px;
-  width: fit-content;
+  height: fit-content; 
 }
 
 h1,

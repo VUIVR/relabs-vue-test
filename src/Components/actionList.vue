@@ -44,25 +44,18 @@ export default {
     };
 
     socket.onmessage = (event) => {
-      this.actions = this.actions.slice(0, 6);
-
-      if (this.actions.length < 8) {
-        this.actions.unshift(JSON.parse(event.data));
-      } else {
-        this.actions.unshift(JSON.parse(event.data));
-      }
+      this.actions = this.actions.slice(0, 7);
+      this.actions.unshift(JSON.parse(event.data))      
     };
   },
 };
 </script>
 
 <style>
-.tr-enter-active,
-.tr-leave-active {
+.tr-enter-active {
   transition: all 0.5s ease;
 }
-.tr-enter-from,
-.tr-leave-to {
+.tr-enter-from {
   opacity: 0;
   transform: translateX(30px);
 }

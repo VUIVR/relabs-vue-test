@@ -29,7 +29,7 @@
 import axios from "axios";
 import moment from "moment";
 import MyButton from "./UI/MyButton.vue";
-import pagination from "./UI/pagination.vue";
+import pagination from "./MyPagination";
 
 export default {
   components: {

@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import userList from "@/Components/userList.vue";
-import actionList from "@/Components/actionList.vue";
+import userList from "@/Components/UserList";
+import actionList from "@/Components/ActionList";
 
 export default {
   components: {
