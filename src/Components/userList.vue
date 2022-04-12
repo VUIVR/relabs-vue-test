@@ -17,25 +17,20 @@
           <td>{{ user.name }}</td>
           <td>{{ user.role }}</td>
           <td>{{ convertDate(user.ctime) }}</td>
-          <td><my-button @click="removeUser(user.id)">Удалить</my-button></td>
+          <td><button @click="removeUser(user.id)">Удалить</button></td>
         </tr>
       
     </table>
-    <pagination :paramsFetch="paramsFetch" @handlePage="handlePage" />
+    <!-- <pagination :paramsFetch="paramsFetch" @handlePage="handlePage" /> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import moment from "moment";
-import MyButton from "./UI/MyButton.vue";
-import pagination from "./MyPagination";
+/* import pagination from "./MyPagination"; */
 
 export default {
-  components: {
-    MyButton,
-    pagination,
-  },
   name: "userList",
   data() {
     return {

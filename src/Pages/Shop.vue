@@ -8,15 +8,32 @@
         85 991 ₽<span class="price"> 99 990 ₽ </span>
       </div>
       <div class="title">Apple / Iphone 12 256Gb / 6.1"</div>
-      <div class="rating">★★★★☆ <span class="ratingNum">4</span></div>
+
+      <div class="rating">
+        <el-rate 
+          v-model="value"
+          disabled
+          show-score
+          text-color="#ff9900"          
+        />       
+      </div>
       <div class="credit">РАССРОЧКА 0-0-6</div>
       <div class="buy">
-        <button class="btn">Купить</button>
+        <el-button type="primary">Купить</el-button>
+        <el-icon :size="size" :color="color">
+          <edit />
+        </el-icon>
         <span class="heart">♡</span>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const value = ref(4)
+</script>
 
 <style scoped>
 .card {
@@ -49,33 +66,29 @@ img {
 
 .totalprice {
   color: #000;
-  font-weight: 700;  
+  font-weight: 700;
 }
 
 .price {
   color: grey;
   font-size: 0.8rem;
   text-decoration: line-through;
-  
 }
 
 .title {
   color: grey;
   display: inline;
   font-size: small;
- 
 }
 
 .rating {
   color: #fa2068;
   font-size: large;
-  
 }
 
 .ratingNum {
   color: grey;
   font-size: small;
-  
 }
 
 .credit {
@@ -92,7 +105,6 @@ img {
   display: flex;
   margin-top: 10px;
   width: fit-content;
-  
 }
 
 .btn {
@@ -106,10 +118,10 @@ img {
   border: none;
 }
 
-.heart{
-    color: #fa2068;
-    font-size: x-large;
-    font-weight: 900;
-    margin-left: 10px;}
-    
+.heart {
+  color: #fa2068;
+  font-size: x-large;
+  font-weight: 900;
+  margin-left: 10px;
+}
 </style>
