@@ -1,7 +1,9 @@
 <template>
-  <Navbar />
-  <div class="wrapper">
-    <router-view />
+  <div class="common-layout">
+    <el-container>
+      <el-header> <Navbar /> </el-header>
+      <el-main> <router-view /> </el-main>
+    </el-container>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ import Navbar from "@/Components/Navbar.vue";
 export default {
   components: {
     Navbar,
-  },  
+  },
 };
 </script>
 
@@ -45,7 +47,7 @@ a {
   border-radius: 5px;
   margin-bottom: 10px;
   padding: 15px;
-  height: fit-content; 
+  height: fit-content;
 }
 
 h1,
