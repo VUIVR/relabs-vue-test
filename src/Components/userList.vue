@@ -1,36 +1,36 @@
 <template>
   <div class="container">
-    <h3>Список пользователей</h3>
-    <table>
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>Name</td>
-          <td>Role</td>
-          <td>Date</td>
-          <td>Action</td>
-        </tr>
-      </thead>
-      
-        <tr v-for="user in users" :key="user.ctime" class="row">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ convertDate(user.ctime) }}</td>
-          <td><button @click="removeUser(user.id)">Удалить</button></td>
-        </tr>
-      
-    </table>
-    <!-- <pagination :paramsFetch="paramsFetch" @handlePage="handlePage" /> -->
+    <el-table :data="users" border>
+      <el-table-column prop="id" label="Id"  />
+      <el-table-column prop="name" label="Name"  />
+      <el-table-column prop="role" label="Role" />
+      <el-table-column prop="{convertDate(ctime)}" label="Date" />
+      <el-table-column label="Action">
+        <template #default="scope">
+          <el-button
+            type="danger"
+            size="small"
+            @click.prevent="removeUser(scope.row.id)"
+            plain
+          >
+            Удалить
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <pagination :paramsFetch="paramsFetch" @handlePage="handlePage" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import moment from "moment";
-/* import pagination from "./MyPagination"; */
+import pagination from "./MyPagination";
 
 export default {
+  components: {
+    pagination,
+  },
   name: "userList",
   data() {
     return {
@@ -65,6 +65,7 @@ export default {
     },
 
     handlePage(offs) {
+      console.log(offs);
       this.paramsFetch.offset = offs;
       this.fetchPost(this.paramsFetch.limit, this.paramsFetch.offset);
     },
@@ -74,14 +75,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-td {
-  padding: 5px;
-}
-.row:hover {
-  box-shadow: 0 0 5px 2px;
-  transition: box-shadow 0.2s ease-out;
-  cursor: pointer;
-}
-</style>

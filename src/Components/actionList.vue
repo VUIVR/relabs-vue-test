@@ -1,20 +1,12 @@
 <template>
   <div class="container">
     <h3>Список событий</h3>
-    <table>
-      <thead>
-        <tr>
-          <td>Время</td>
-          <td>Событие</td>
-        </tr>
-      </thead>
-      <TransitionGroup name="tr">
-        <tr v-for="action of actions" :key="action.ctime">
-          <td>{{ convertDate(action.ctime) }}</td>
-          <td>{{ action.event }}</td>
-        </tr>
-      </TransitionGroup>
-    </table>
+    <el-table :data="actions" style="width: 100%" border>
+      <el-table-column prop="ctime" label="Date" width="180" sortable>
+        
+      </el-table-column>
+      <el-table-column prop="event" label="Action" width="180" />
+    </el-table>
   </div>
 </template>
 
@@ -45,22 +37,8 @@ export default {
 
     socket.onmessage = (event) => {
       this.actions = this.actions.slice(0, 7);
-      this.actions.unshift(JSON.parse(event.data))      
+      this.actions.unshift(JSON.parse(event.data));
     };
   },
 };
 </script>
-
-<style>
-.tr-enter-active {
-  transition: all 0.5s ease;
-}
-.tr-enter-from {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-td {
-  padding: 5px;
-}
-</style>

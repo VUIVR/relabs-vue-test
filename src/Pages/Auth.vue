@@ -1,8 +1,11 @@
 <template>
   <div class="container">
     <h3>Авторизация</h3>
-    <form @submit.prevent="submitHandler">
-      <input
+    <el-form @submit.prevent="submitHandler">
+      <el-input
+        validate-event='false'
+        autofocus
+        autocomplete
         type="text"
         name="email"
         placeholder="Введите почту"
@@ -21,11 +24,12 @@
         >Некорректно введана почта</small
       >
 
-      <input
+      <el-input
         type="password"
         name="pass"
         placeholder="Введите пароль"
         v-model.trim="v$.pass.$model"
+        show-password
         :class="{
           invalid:
             (v$.pass.$dirty && v$.pass.required.$invalid) ||
@@ -46,21 +50,23 @@
         >Максимум 15 символов</small
       >
 
-      <my-button type="submit" class="center">Войти</my-button>
-    </form>
-  </div>
-
-  <div class="wrapper" v-if="showModal">
-    <div class="modal">
-      <div class="rotation"></div>
-      <h3>Авторизация...</h3>
-    </div>
+      <el-button
+        type="submit"
+        class="center"
+        @click="submitHandler"
+        v-loading.fullscreen.lock="showModal"
+      >
+        Войти
+      </el-button>
+    </el-form>
   </div>
 </template>
 
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, email, minLength, maxLength } from "@vuelidate/validators";
+import { ElLoading } from "element-plus";
+import { ref } from "vue";
 
 export default {
   name: "Auth",
@@ -69,7 +75,7 @@ export default {
     return {
       email: "",
       pass: "",
-      showModal: false,
+      showModal: ref(false),
     };
   },
 
@@ -90,7 +96,12 @@ export default {
         this.v$.$touch();
         return;
       } else {
-        this.showModal = true;
+        this.showModal = ElLoading.service({
+          lock: true,
+          text: "Авторизация",
+          background: "rgba(0, 0, 0, 0.7)",
+        });
+
         setTimeout(() => {
           this.$router.push("/");
         }, 2000);
@@ -171,7 +182,7 @@ small {
   width: 50px;
   height: 50px;
   background: transparent;
-  
+
   animation-name: rotation;
   animation-duration: 5s;
   animation-iteration-count: infinite;

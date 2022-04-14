@@ -1,6 +1,8 @@
 <template>
+  <el-space wrap :size="30">
     <user-list />
     <action-list />
+  </el-space>
 </template>
 
 <script>
@@ -17,10 +19,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.wrapper {
-  display: flex;
-  justify-content: space-evenly;
-}
-</style>

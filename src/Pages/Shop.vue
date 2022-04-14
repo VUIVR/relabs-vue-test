@@ -1,38 +1,28 @@
 <template>
-  <div class="container">
-    <h3>Goods</h3>
-    <div class="card">
-      <img src="@/Assets/Shop/Iph12.jpg" alt="Iphone 12" />
-      <div class="discount">14%</div>
-      <div class="totalprice">
-        85 991 ₽<span class="price"> 99 990 ₽ </span>
-      </div>
-      <div class="title">Apple / Iphone 12 256Gb / 6.1"</div>
+      <div class="card">
+        <img src="@/Assets/Shop/Iph12.jpg" alt="Iphone 12" />
+        <div class="discount">14%</div>
+        <div class="totalprice">
+          85 991 ₽<span class="price"> 99 990 ₽ </span>
+        </div>
+        <div class="title">Apple / Iphone 12 256Gb / 6.1"</div>
 
-      <div class="rating">
-        <el-rate 
-          v-model="value"
-          disabled
-          show-score
-          text-color="#ff9900"          
-        />       
+        <div class="rating">
+          <el-rate v-model="value" disabled show-score text-color="#ff9900" />
+        </div>
+        <div class="credit">РАССРОЧКА 0-0-6</div>
+        <div class="buy">
+          <el-button type="primary">Купить</el-button>
+          <span class="heart">♡</span>
+        </div>
       </div>
-      <div class="credit">РАССРОЧКА 0-0-6</div>
-      <div class="buy">
-        <el-button type="primary">Купить</el-button>
-        <el-icon :size="size" :color="color">
-          <edit />
-        </el-icon>
-        <span class="heart">♡</span>
-      </div>
-    </div>
-  </div>
+
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const value = ref(4)
+const value = ref(4);
 </script>
 
 <style scoped>
